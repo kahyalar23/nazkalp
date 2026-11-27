@@ -1,0 +1,2256 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kardiyoloji Görsel Çalışma Rehberi</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap');
+
+:root {
+  --primary: #0f4c5c;
+  --secondary: #e36414;
+  --accent: #9a031e;
+  --bg: #fefcf7;
+  --card: #ffffff;
+  --success: #0a9396;
+  --warning: #ee9b00;
+  --danger: #bb3e03;
+  --info: #005f73;
+  --light-bg: #f0f7f4;
+  --gradient1: linear-gradient(135deg, #0f4c5c 0%, #0a9396 100%);
+  --gradient2: linear-gradient(135deg, #e36414 0%, #ee9b00 100%);
+  --gradient3: linear-gradient(135deg, #9a031e 0%, #e36414 100%);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--bg);
+  color: #1a1a2e;
+  line-height: 1.7;
+  font-size: 11pt;
+}
+
+/* Cover Page */
+.cover {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f4c5c 0%, #005f73 30%, #0a9396 60%, #94d2bd 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: white;
+  text-align: center;
+  padding: 60px 40px;
+  page-break-after: always;
+  position: relative;
+  overflow: hidden;
+}
+
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.08) 0%, transparent 50%),
+              radial-gradient(circle at 70% 80%, rgba(255,255,255,0.05) 0%, transparent 40%);
+}
+
+.cover h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 56pt;
+  font-weight: 900;
+  margin-bottom: 10px;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  position: relative;
+  letter-spacing: -1px;
+}
+
+.cover .subtitle {
+  font-size: 18pt;
+  font-weight: 300;
+  opacity: 0.9;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.cover .heart-icon {
+  font-size: 100pt;
+  margin-bottom: 30px;
+  position: relative;
+  filter: drop-shadow(0 4px 20px rgba(0,0,0,0.3));
+}
+
+.cover .tagline {
+  font-size: 12pt;
+  font-weight: 400;
+  opacity: 0.75;
+  max-width: 600px;
+  position: relative;
+}
+
+/* Section styling */
+.section {
+  page-break-before: always;
+  padding: 30px 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-header {
+  background: var(--gradient1);
+  color: white;
+  padding: 25px 35px;
+  border-radius: 16px;
+  margin-bottom: 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-header.orange { background: var(--gradient2); }
+.section-header.red { background: var(--gradient3); }
+.section-header.teal { background: linear-gradient(135deg, #0a9396 0%, #94d2bd 100%); color: #003d3d; }
+
+.section-header .section-num {
+  font-size: 9pt;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.section-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24pt;
+  font-weight: 700;
+  margin: 5px 0;
+}
+
+.section-header .section-desc {
+  font-size: 11pt;
+  opacity: 0.85;
+  margin-top: 5px;
+}
+
+/* Mind Map Container */
+.mindmap-container {
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+  margin: 20px 0;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+  border: 1px solid #e8ebe6;
+  overflow: hidden;
+}
+
+.mindmap-container h3 {
+  color: var(--primary);
+  font-size: 14pt;
+  font-weight: 700;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mindmap-container h3::before {
+  content: '🗺️';
+  font-size: 18pt;
+}
+
+/* Diagram Container */
+.diagram-container {
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+  margin: 20px 0;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+  border: 1px solid #e8ebe6;
+}
+
+.diagram-container h3 {
+  color: var(--info);
+  font-size: 13pt;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.diagram-container h3::before {
+  content: '📊 ';
+}
+
+/* Flow Diagram */
+.flow-container {
+  background: linear-gradient(135deg, #f8fffe, #f0f7ff);
+  border-radius: 16px;
+  padding: 25px;
+  margin: 20px 0;
+  border: 2px solid #d0e8e4;
+}
+
+.flow-container h3 {
+  color: #005f73;
+  font-size: 13pt;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.flow-container h3::before {
+  content: '🔄 ';
+}
+
+/* Info Cards */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin: 20px 0;
+}
+
+.info-card {
+  background: white;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  border-left: 5px solid var(--primary);
+  transition: transform 0.2s;
+}
+
+.info-card.orange { border-left-color: var(--secondary); }
+.info-card.red { border-left-color: var(--accent); }
+.info-card.teal { border-left-color: var(--success); }
+.info-card.warning { border-left-color: var(--warning); }
+
+.info-card h4 {
+  font-size: 11pt;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--primary);
+}
+
+.info-card.orange h4 { color: var(--secondary); }
+.info-card.red h4 { color: var(--accent); }
+.info-card.teal h4 { color: var(--success); }
+
+.info-card p, .info-card ul {
+  font-size: 10pt;
+  color: #3a3a4a;
+}
+
+.info-card ul {
+  padding-left: 16px;
+}
+
+.info-card li {
+  margin-bottom: 3px;
+}
+
+/* Key Point Boxes */
+.key-point {
+  background: linear-gradient(135deg, #fff3cd, #fff8e1);
+  border: 2px solid #ffc107;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin: 15px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.key-point::before {
+  content: '⚡';
+  font-size: 18pt;
+  flex-shrink: 0;
+}
+
+.key-point.danger {
+  background: linear-gradient(135deg, #fce4ec, #fff0f0);
+  border-color: #ef5350;
+}
+
+.key-point.danger::before { content: '⚠️'; }
+
+.key-point.tip {
+  background: linear-gradient(135deg, #e0f7fa, #f0fffe);
+  border-color: #0097a7;
+}
+
+.key-point.tip::before { content: '💡'; }
+
+.key-point.exam {
+  background: linear-gradient(135deg, #ede7f6, #f5f0ff);
+  border-color: #7e57c2;
+}
+
+.key-point.exam::before { content: '📝'; }
+
+/* Comparison Tables */
+.compare-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 15px 0;
+  font-size: 10pt;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.compare-table thead th {
+  background: var(--primary);
+  color: white;
+  padding: 12px 14px;
+  font-weight: 600;
+  text-align: left;
+  font-size: 10pt;
+}
+
+.compare-table tbody td {
+  padding: 10px 14px;
+  border-bottom: 1px solid #eef2f0;
+  vertical-align: top;
+}
+
+.compare-table tbody tr:nth-child(even) {
+  background: #f8fbfa;
+}
+
+.compare-table tbody tr:hover {
+  background: #eef5f3;
+}
+
+/* Visual Arrows/Flow */
+.visual-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 15px 0;
+  padding: 15px;
+}
+
+.flow-step {
+  background: white;
+  border: 2px solid var(--primary);
+  border-radius: 10px;
+  padding: 8px 16px;
+  font-weight: 600;
+  font-size: 10pt;
+  text-align: center;
+  min-width: 100px;
+}
+
+.flow-step.highlight {
+  background: var(--primary);
+  color: white;
+}
+
+.flow-arrow {
+  font-size: 20pt;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+/* Badge/Tag */
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 9pt;
+  font-weight: 600;
+  margin: 2px;
+}
+
+.badge-primary { background: #e0f0f5; color: var(--primary); }
+.badge-danger { background: #fce4ec; color: var(--accent); }
+.badge-warning { background: #fff3cd; color: #856404; }
+.badge-success { background: #e0f5f0; color: #0a6b4f; }
+.badge-info { background: #e8eaf6; color: #283593; }
+
+/* Mermaid overrides */
+.mermaid {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.mermaid svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Two columns */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 15px 0;
+}
+
+/* Summary strip */
+.summary-strip {
+  display: flex;
+  gap: 10px;
+  margin: 15px 0;
+  flex-wrap: wrap;
+}
+
+.summary-item {
+  flex: 1;
+  min-width: 150px;
+  background: white;
+  border-radius: 10px;
+  padding: 14px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  border-top: 4px solid var(--primary);
+}
+
+.summary-item .number {
+  font-size: 22pt;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.summary-item .label {
+  font-size: 9pt;
+  color: #666;
+  margin-top: 4px;
+}
+
+/* Mnemonic Box */
+.mnemonic {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 14px;
+  padding: 20px;
+  margin: 15px 0;
+  text-align: center;
+}
+
+.mnemonic h4 {
+  font-size: 14pt;
+  margin-bottom: 8px;
+}
+
+.mnemonic .letters {
+  font-size: 28pt;
+  font-weight: 900;
+  letter-spacing: 8px;
+  margin: 10px 0;
+}
+
+.mnemonic .explanation {
+  font-size: 10pt;
+  opacity: 0.9;
+}
+
+/* Checklist */
+.checklist {
+  list-style: none;
+  padding: 0;
+}
+
+.checklist li {
+  padding: 6px 0 6px 28px;
+  position: relative;
+  font-size: 10.5pt;
+}
+
+.checklist li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--success);
+  font-weight: 700;
+  font-size: 12pt;
+}
+
+/* Versus Box */
+.vs-box {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 15px;
+  margin: 15px 0;
+  align-items: center;
+}
+
+.vs-left, .vs-right {
+  background: white;
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.vs-left { border-top: 4px solid #2196f3; }
+.vs-right { border-top: 4px solid #f44336; }
+
+.vs-center {
+  font-size: 24pt;
+  font-weight: 900;
+  color: #9e9e9e;
+}
+
+/* Page break utilities */
+.page-break { page-break-before: always; }
+.no-break { page-break-inside: avoid; }
+
+/* Print styles */
+@media print {
+  body { background: white; font-size: 10pt; }
+  .section { padding: 15px 25px; }
+  .mindmap-container, .diagram-container, .flow-container, .info-card {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+  .cover { min-height: auto; padding: 80px 40px; }
+}
+
+/* TOC */
+.toc {
+  page-break-after: always;
+  padding: 40px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.toc h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 28pt;
+  color: var(--primary);
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.toc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.toc-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: white;
+  border-radius: 10px;
+  border-left: 4px solid var(--primary);
+  font-size: 10pt;
+  font-weight: 500;
+  text-decoration: none;
+  color: #1a1a2e;
+}
+
+.toc-item .toc-num {
+  background: var(--primary);
+  color: white;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 10pt;
+  flex-shrink: 0;
+}
+
+/* Anatomy visual */
+.anatomy-visual {
+  text-align: center;
+  margin: 20px 0;
+  padding: 20px;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  border-radius: 16px;
+}
+</style>
+</head>
+<body>
+
+<!-- ============ COVER PAGE ============ -->
+<div class="cover">
+  <div class="heart-icon">🫀</div>
+  <h1>Kardiyoloji</h1>
+  <div class="subtitle">Görsel Çalışma Rehberi</div>
+  <div class="tagline">
+    Zihin haritaları, akış diyagramları ve görsel karşılaştırmalarla<br>
+    20 sayfalık ders notlarının tam kapsamlı görsel özeti
+  </div>
+</div>
+
+<!-- ============ TABLE OF CONTENTS ============ -->
+<div class="toc">
+  <h2>📋 İçindekiler</h2>
+  <div class="toc-grid">
+    <div class="toc-item"><span class="toc-num">1</span> Kardiyometabolik Risk ve Damar Hasarı</div>
+    <div class="toc-item"><span class="toc-num">2</span> Diyabet, Obezite ve Kronik Göğüs Ağrısı</div>
+    <div class="toc-item"><span class="toc-num">3</span> AKS: Akut Koroner Sendrom</div>
+    <div class="toc-item"><span class="toc-num">4</span> Perikardit, Efüzyon ve Tamponad</div>
+    <div class="toc-item"><span class="toc-num">5</span> Konstriksiyon ve Kalp Yetersizliği</div>
+    <div class="toc-item"><span class="toc-num">6</span> KY Kliniği, İlaçları ve Şok</div>
+    <div class="toc-item"><span class="toc-num">7</span> Kardiyomiyopatiler (DCM/HCM/RCM)</div>
+    <div class="toc-item"><span class="toc-num">8</span> ARVC, Miyokardit ve Bradiaritmiler</div>
+    <div class="toc-item"><span class="toc-num">9</span> Dal Blokları ve Taşikardiler</div>
+    <div class="toc-item"><span class="toc-num">10</span> VT-SVT Ayrımı, VF ve Senkop</div>
+    <div class="toc-item"><span class="toc-num">11</span> Senkop Testleri ve Kapak Hastalıkları</div>
+    <div class="toc-item"><span class="toc-num">12</span> Mitral Kapak Hastalıkları</div>
+    <div class="toc-item"><span class="toc-num">13</span> Triküspit ve Hipertansiyon</div>
+    <div class="toc-item"><span class="toc-num">14</span> Antihipertansif ve Dirençli HT</div>
+    <div class="toc-item"><span class="toc-num">15</span> Endokrin Hipertansiyon</div>
+    <div class="toc-item"><span class="toc-num">16</span> Enfektif Endokardit: Tanı</div>
+    <div class="toc-item"><span class="toc-num">17</span> Endokardit: İlaç ve Profilaksi</div>
+    <div class="toc-item"><span class="toc-num">18</span> Konjenital Kalp Hastalıkları</div>
+    <div class="toc-item"><span class="toc-num">19</span> Pulmoner Hipertansiyon</div>
+    <div class="toc-item"><span class="toc-num">20</span> Sistemik Hastalıklar ve Gebelik</div>
+    <div class="toc-item" style="border-left-color:#9a031e;"><span class="toc-num" style="background:#9a031e;">M1</span> <strong>Göğüs Ağrısı Master Rehberi</strong></div>
+    <div class="toc-item" style="border-left-color:#0a9396;"><span class="toc-num" style="background:#0a9396;">M2</span> <strong>Klinik Yaklaşımlar Master Haritası</strong></div>
+    <div class="toc-item" style="border-left-color:#e36414;"><span class="toc-num" style="background:#e36414;">M3</span> <strong>Kardiyoloji İlaçları Master Haritası</strong></div>
+    <div class="toc-item" style="border-left-color:#667eea;"><span class="toc-num" style="background:#667eea;">M4</span> <strong>Semptom → Hastalık Master Haritası</strong></div>
+  </div>
+</div>
+
+<!-- ============ MASTER MIND MAP ============ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">ANA ZİHİN HARİTASI</div>
+    <h2>Kardiyoloji: Büyük Resim</h2>
+    <div class="section-desc">Her şeyi tek bir bakışta gör — hangi sorun hangi mekanizmayı bozar?</div>
+  </div>
+
+  <div class="mindmap-container">
+    <h3>Kardiyolojinin 6 Temel Sorusu</h3>
+    <div class="mermaid">
+graph TB
+    KALP["🫀 KALP<br/>Nerede sorun var?"]
+    KALP --> D["🩸 Damar & O₂<br/>Plak, iskemi, MI"]
+    KALP --> DO["📥 Dolum & Ön Yük<br/>Tamponad, konstriksiyon"]
+    KALP --> P["💪 Pompa & İleri Akım<br/>SV, CO, EF"]
+    KALP --> C["🚧 Çıkış Direnci<br/>AS, HT, PVR"]
+    KALP --> E["⚡ Elektrik<br/>Bradikardi, taşikardi"]
+    KALP --> K["🚪 Kapak & Akım Yönü<br/>Darlık, kaçak, şant"]
+
+    D --> D1["Sayfa 1-3"]
+    DO --> DO1["Sayfa 4-5, 7"]
+    P --> P1["Sayfa 5-7, 11-12"]
+    C --> C1["Sayfa 11, 13-14, 18-19"]
+    E --> E1["Sayfa 8-11"]
+    K --> K1["Sayfa 11-13, 18"]
+
+    style KALP fill:#0f4c5c,color:#fff,stroke:none
+    style D fill:#e76f51,color:#fff,stroke:none
+    style DO fill:#2a9d8f,color:#fff,stroke:none
+    style P fill:#e9c46a,color:#000,stroke:none
+    style C fill:#264653,color:#fff,stroke:none
+    style E fill:#f4a261,color:#000,stroke:none
+    style K fill:#606c38,color:#fff,stroke:none
+    </div>
+  </div>
+
+  <div class="key-point tip">
+    <div>
+      <strong>Vaka çözme stratejisi:</strong> Her soru kökünde önce bu 6 mekanizmadan hangisinin bozulduğunu bul. Sonra semptom → muayene → test → tedavi zincirini o mekanizmaya bağla.
+    </div>
+  </div>
+</div>
+
+<!-- ============ SECTION 1: Kardiyometabolik Risk ============ -->
+<div class="section">
+  <div class="section-header orange">
+    <div class="section-num">BÖLÜM 01</div>
+    <h2>Kardiyometabolik Risk ve Damar Hasarı</h2>
+    <div class="section-desc">Risk × Zaman = Kardiyovasküler Yük</div>
+  </div>
+
+  <div class="flow-container">
+    <h3>Ateroskleroz Mekanizması — Adım Adım</h3>
+    <div class="mermaid">
+graph LR
+    RF["⚠️ Risk Faktörleri<br/>(HT, DM, sigara, LDL↑)"] --> DH["🔴 Damar Hasarı<br/>Endotel bozukluğu"]
+    DH --> AT["🟡 Ateroskleroz<br/>LDL birikimi + oksidlenme"]
+    AT --> SH["🟠 Sessiz Hastalık<br/>Plak büyümesi"]
+    SH --> KO["🔴 Komplikasyonlar<br/>MI / İnme / KY"]
+
+    style RF fill:#ff6b6b,color:#fff,stroke:none
+    style DH fill:#ee5a24,color:#fff,stroke:none
+    style AT fill:#f9ca24,color:#000,stroke:none
+    style SH fill:#ff9f43,color:#000,stroke:none
+    style KO fill:#c0392b,color:#fff,stroke:none
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="info-card orange">
+      <h4>🔧 Değiştirilebilir Faktörler</h4>
+      <ul>
+        <li>Basınç (HT)</li>
+        <li>Aterojenik lipoproteinler (LDL↑)</li>
+        <li>Sigara</li>
+        <li>Glisemi (DM)</li>
+        <li>Obezite / Yağlanma</li>
+        <li>Fiziksel inaktivite</li>
+        <li>Beslenme</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <h4>🔒 Sabit Faktörler</h4>
+      <ul>
+        <li>Yaş</li>
+        <li>Genetik</li>
+        <li>Cinsiyet</li>
+        <li>Aile öyküsü</li>
+      </ul>
+      <p style="margin-top:8px; font-style:italic; font-size:9pt; color:#888;">
+        → Bu faktörler müdahalenin yoğunluğunu belirler
+      </p>
+    </div>
+    <div class="info-card teal">
+      <h4>📊 SCORE2 Risk Hesabı</h4>
+      <ul>
+        <li>Girdi: yaş, cinsiyet, sigara, sistolik KB, non-HDL</li>
+        <li>Sonuç: 10 yıllık olay riski</li>
+      </ul>
+      <p style="margin-top:8px;">
+        <span class="badge badge-danger">&lt;50 y: ≥%7,5</span>
+        <span class="badge badge-warning">50-69 y: ≥%10</span>
+        <span class="badge badge-primary">≥70 y: ≥%15</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="diagram-container no-break">
+    <h3>Metabolik Sendrom — 5 Ölçüt (3/5 = Tanı)</h3>
+    <div class="mermaid">
+graph TB
+    MS["🎯 METABOLİK SENDROM<br/>5 ölçütten ≥3"]
+    MS --> G["🩸 Açlık Glukozu<br/>&gt;100 mg/dL"]
+    MS --> B["🩺 Basınç<br/>&gt;130/85 mmHg"]
+    MS --> T["📊 Trigliserit<br/>&gt;150 mg/dL"]
+    MS --> H["💎 HDL<br/>♂ &lt;40 / ♀ &lt;50"]
+    MS --> BEL["📏 Bel Çevresi<br/>♂ &gt;40 / ♀ &gt;35"]
+
+    style MS fill:#9a031e,color:#fff,stroke:none
+    style G fill:#fff3cd,color:#000,stroke:#ffc107
+    style B fill:#fff3cd,color:#000,stroke:#ffc107
+    style T fill:#fff3cd,color:#000,stroke:#ffc107
+    style H fill:#fff3cd,color:#000,stroke:#ffc107
+    style BEL fill:#fff3cd,color:#000,stroke:#ffc107
+    </div>
+  </div>
+
+  <div class="flow-container no-break">
+    <h3>Visseral Yağ Dokusu — Endokrin Etkileri</h3>
+    <div class="mermaid">
+graph LR
+    VA["🟡 Visseral<br/>Adiposit"] --> SIG["Leptin, Rezistin<br/>IL-6, TNF-α"]
+    SIG --> IR["İnsülin<br/>Direnci"]
+    IR --> KC["🟤 Karaciğer<br/>VLDL↑, HDL↓"]
+    SIG --> RAAS["RAAS + SNS<br/>Aktivasyonu"]
+    RAAS --> HT["⬆️ HİPERTANSİYON"]
+
+    style VA fill:#f9ca24,color:#000,stroke:none
+    style HT fill:#c0392b,color:#fff,stroke:none
+    </div>
+  </div>
+
+  <div class="key-point exam">
+    <div>
+      <strong>SINAV TUZAĞI:</strong> Tek başına abdominal obezite MetS tanısı koydurtmaz — 5 ölçütten 3'ü gerekir. LDL'nin tek ölçümü maruziyet süresini göstermez.
+    </div>
+  </div>
+</div>
+
+<!-- ============ SECTION 2: Diyabet ve Kronik Göğüs Ağrısı ============ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">BÖLÜM 02</div>
+    <h2>Diyabet, Obezite ve Kronik Göğüs Ağrısı</h2>
+  </div>
+
+  <div class="flow-container">
+    <h3>İskemi Mekanizması</h3>
+    <div class="mermaid">
+graph LR
+    E["⬆️ Efor/Stres"] --> HT["Hız↑ Kontraktilite↑"]
+    HT --> OT["O₂ Talebi ↑"]
+    D["🔴 Koroner Darlık"] --> AK["Akım Sınırlı"]
+    OT --> ISK{{"O₂ Talep > Sunum"}}
+    AK --> ISK
+    ISK --> ANG["💔 ANGİNA"]
+    ANG --> DIN["Yük Kalkınca<br/>→ Gerileme"]
+
+    style ISK fill:#c0392b,color:#fff,stroke:none
+    style ANG fill:#ff6b6b,color:#fff,stroke:none
+    style DIN fill:#2ecc71,color:#fff,stroke:none
+    </div>
+  </div>
+
+  <div class="diagram-container no-break">
+    <h3>Angina Sınıflaması — Hızlı Ayrım</h3>
+    <div class="mermaid">
+graph TB
+    AG["Göğüs Ağrısı?"] --> TIP["3 Kriter"]
+    TIP --> K1["1. Substernal bası/sıkışma"]
+    TIP --> K2["2. Efor/stresle tetiklenir"]
+    TIP --> K3["3. Dinlenme/nitratla düzelir"]
+
+    K1 & K2 & K3 --> TI["✅ 3/3 = TİPİK"]
+    K1 & K2 --> AT["⚠️ 2/3 = ATİPİK"]
+    K1 --> NA["❌ 0-1/3 = NONANJİNAL"]
+
+    style TI fill:#27ae60,color:#fff,stroke:none
+    style AT fill:#f39c12,color:#fff,stroke:none
+    style NA fill:#e74c3c,color:#fff,stroke:none
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="info-card">
+      <h4>💊 Antiiskemik İlaçlar</h4>
+      <ul>
+        <li><strong>β-bloker:</strong> Hız↓, kontraktilite↓, diyastol↑</li>
+        <li><strong>Nitrat:</strong> Ön yük↓, kollateral↑</li>
+        <li><strong>KKB:</strong> Ön yük↓, damar direnci↓</li>
+      </ul>
+    </div>
+    <div class="info-card orange">
+      <h4>🔬 Tanı Algoritması</h4>
+      <ul>
+        <li>Önce AKS'yi dışla</li>
+        <li>Egzersiz yapabilir → Egzersiz testi</li>
+        <li>Bazal EKG anormal → Perfüzyon/Eko</li>
+        <li>Yapamaz → Farmakolojik stres</li>
+        <li>Pozitif → Anjiyografi/BT</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="diagram-container no-break">
+    <h3>Obezite Tedavi Piramidi</h3>
+    <div class="mermaid">
+graph TB
+    BASE["👣 HER HASTADA<br/>Kalori kısıtlaması + Fiziksel aktivite"]
+    MID["💊 İLAÇ — BKİ >30 veya >27 + komorbidite<br/>GLP-1 agonistleri"]
+    TOP["🔪 BARİATRİK CERRAHİ<br/>BKİ >40 veya >35 + ağır komorbidite"]
+
+    BASE --- MID --- TOP
+
+    style BASE fill:#a8dadc,color:#000,stroke:none
+    style MID fill:#457b9d,color:#fff,stroke:none
+    style TOP fill:#1d3557,color:#fff,stroke:none
+    </div>
+  </div>
+
+  <div class="key-point danger">
+    <div>
+      <strong>GLP-1 Agonistleri Uyarı:</strong> Medüller tiroit kanseri ve pankreatit öyküsünde dikkat!
+    </div>
+  </div>
+</div>
+
+<!-- ============ SECTION 3: AKS ============ -->
+<div class="section">
+  <div class="section-header red">
+    <div class="section-num">BÖLÜM 03</div>
+    <h2>Akut Koroner Sendrom (AKS)</h2>
+    <div class="section-desc">Kararsız Angina → NSTEMI → STEMI</div>
+  </div>
+
+  <div class="mindmap-container">
+    <h3>AKS Karar Ağacı</h3>
+    <div class="mermaid">
+graph TB
+    AKS["🚨 AKUT GÖĞÜS AĞRISI<br/>EKG + Troponin"]
+    AKS --> ST{"ST Elevasyonu<br/>var mı?"}
+    ST -->|EVET| STEMI["🔴 STEMI<br/>≥2 komşu derivasyonda<br/>ST elevasyonu"]
+    ST -->|HAYIR| TRP{"Troponin<br/>yükselmiş mi?"}
+    TRP -->|EVET| NSTEMI["🟠 NSTEMI<br/>Akut miyokart hasarı<br/>ST elevasyonu yok"]
+    TRP -->|HAYIR| KA["🟡 Kararsız Angina<br/>İstirahatte iskemi<br/>Nekroz bulgusu yok"]
+
+    STEMI --> PCI["⚡ ACİL PCI"]
+    NSTEMI --> RISK["📊 Riske Göre<br/>Revaskülarizasyon"]
+    KA --> MED["💊 Medikal Tedavi"]
+
+    style AKS fill:#2c3e50,color:#fff,stroke:none
+    style STEMI fill:#c0392b,color:#fff,stroke:none
+    style NSTEMI fill:#e67e22,color:#fff,stroke:none
+    style KA fill:#f1c40f,color:#000,stroke:none
+    style PCI fill:#e74c3c,color:#fff,stroke:none
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="info-card red">
+      <h4>🩺 Ağrı Karakteri</h4>
+      <ul>
+        <li><strong>Angina:</strong> Retrosternal bası/sıkışma</li>
+        <li><strong>Perikardit:</strong> İnspirasyonla batar, pozisyonel</li>
+        <li><strong>Aort diseksiyonu:</strong> Ani, yırtılır, en şiddetli</li>
+        <li><strong>Süre:</strong> Angina 2-30 dk, MI genelde >30 dk</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <h4>💊 AKS Tedavi Temel İlaçları</h4>
+      <ul>
+        <li><span class="badge badge-danger">Aspirin</span> + <span class="badge badge-danger">P2Y12 inhibitörü</span></li>
+        <li><span class="badge badge-primary">Antikoagülasyon</span> (UFH/LMWH)</li>
+        <li><span class="badge badge-info">β-bloker</span> (O₂ talebi↓)</li>
+        <li><span class="badge badge-info">ACEi</span> (yeniden şekillenme↓)</li>
+        <li><span class="badge badge-warning">Statin</span> (plak stabilizasyonu)</li>
+        <li><span class="badge badge-success">Nitrat</span> (vazodilatasyon)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="diagram-container no-break">
+    <h3>EKG Topografisi — Hangi Arter, Hangi Derivasyonlar?</h3>
+    <table class="compare-table">
+      <thead>
+        <tr><th>Bölge</th><th>Derivasyonlar</th><th>Arter</th><th>İpucu</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="badge badge-danger">Anterior</span></td><td>V1-V6, DI, aVL</td><td>LAD</td><td>En geniş MI alanı</td></tr>
+        <tr><td><span class="badge badge-warning">İnferior</span></td><td>II, III, aVF</td><td>RCA</td><td>Alttaki derivasyonlar</td></tr>
+        <tr><td><span class="badge badge-info">Posterior</span></td><td>V1-V3'te resiprokal ST↓</td><td>LCx/RCA</td><td>Karşılıklı değişiklik</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="key-point exam">
+    <div>
+      <strong>SINAV TUZAKLARI:</strong> Troponin yüksekliği tek başına MI nedenini göstermez. Fibrinolitik NSTEMI'de kontrendike! STEMI'de acil PCI. İlk adım her zaman EKG.
+    </div>
+  </div>
+</div>
+
+<!-- ============ SECTION 4: Perikardit ============ -->
+<div class="section">
+  <div class="section-header teal">
+    <div class="section-num">BÖLÜM 04</div>
+    <h2>Perikardit, Efüzyon ve Tamponad</h2>
+  </div>
+
+  <div class="mindmap-container">
+    <h3>Perikardiyal Hastalık — Spektrum</h3>
+    <div class="mermaid">
+graph LR
+    PER["🫀 PERİKARD<br/>HASTALIĞI"]
+    PER --> AP["🔥 Akut Perikardit<br/>Ağrı + EKG + Frotman"]
+    PER --> EF["💧 Efüzyon<br/>Eksüda vs Transüda"]
+    PER --> TAM["⚡ Tamponad<br/>ACİL DRENAJ"]
+    PER --> KON["🧊 Konstriksiyon<br/>CERRAHİ"]
+
+    AP --> |"Nüks?"| REK["♻️ Rekürren<br/>Kolşisin ≥6 ay"]
+    AP --> |"Troponin↑"| MYP["💔 Miyoperikardit"]
+
+    style TAM fill:#c0392b,color:#fff,stroke:none
+    style KON fill:#2c3e50,color:#fff,stroke:none
+    </div>
+  </div>
+
+  <div class="vs-box no-break">
+    <div class="vs-left">
+      <h4 style="color:#2196f3;">🔥 Perikardit</h4>
+      <ul style="font-size:10pt;">
+        <li>Plöritik, pozisyonel ağrı</li>
+        <li>Oturup öne eğilince azalır</li>
+        <li>Yaygın konkav ST elevasyonu</li>
+        <li>Resiprokal değişiklik YOK</li>
+        <li>Sürtünme sesi (frotman)</li>
+      </ul>
+    </div>
+    <div class="vs-center">VS</div>
+    <div class="vs-right">
+      <h4 style="color:#f44336;">💔 MI</h4>
+      <ul style="font-size:10pt;">
+        <li>Bası, sıkışma tarzı</li>
+        <li>Pozisyonla değişmez</li>
+        <li>Bölgesel ST elevasyonu</li>
+        <li>Resiprokal ST depresyonu VAR</li>
+        <li>S3/S4 galosu</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="diagram-container no-break">
+    <h3>Tamponad Fizyolojisi</h3>
+    <div class="mermaid">
+graph TB
+    BK["Basınçlı<br/>Perikard Kesesi"] --> SK["Sağ Kalbi<br/>Sıkıştırır"]
+    SK --> DOL["Dolum ↓"]
+    DOL --> SV["Atım Hacmi ↓<br/>Debi ↓"]
+    SV --> HIP["HİPOTANSİYON"]
+    SV --> TAK["Taşikardi<br/>(kompansasyon)"]
+
+    INS["İnspirasyon"] --> SAG["Sağ Dolum ↑"]
+    SAG --> SOL["Sol Dolum ↓<br/>(aynı kese)"]
+    SOL --> PP["PULSUS PARADOXUS<br/>>10 mmHg düşüş"]
+
+    style BK fill:#8e44ad,color:#fff,stroke:none
+    style PP fill:#c0392b,color:#fff,stroke:none
+    style HIP fill:#e74c3c,color:#fff,stroke:none
+    </div>
+  </div>
+
+  <div class="mnemonic">
+    <h4>Tamponad Triadı (Beck Triadı)</h4>
+    <div class="letters">3 D</div>
+    <div class="explanation">
+      <strong>D</strong>üşük basınç &nbsp;•&nbsp; <strong>D</strong>istansiyon (JVD) &nbsp;•&nbsp; <strong>D</strong>üşük kalp sesleri
+    </div>
+  </div>
+
+  <div class="diagram-container no-break">
+    <h3>Light Ölçütleri — Eksüda mı Transüda mı?</h3>
+    <table class="compare-table">
+      <thead>
+        <tr><th>Ölçüt</th><th>Eksüda Eşiği</th><th>Açıklama</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Sıvı/Kan Protein</td><td><strong>&gt; 0,5</strong></td><td>Yüksek protein = inflamasyon</td></tr>
+        <tr><td>LDH Oranı</td><td><strong>&gt; 0,6</strong></td><td>Hücresel hasar</td></tr>
+        <tr><td>Sıvı LDH</td><td><strong>&gt; Normal üst sınırın 2/3'ü</strong></td><td>Aktif süreç</td></tr>
+      </tbody>
+    </table>
+    <div class="key-point tip">
+      <div>Birinin varlığı = Eksüda. Hiçbiri yok = Transüda.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SECTION 5-6: Kalp Yetersizliği ============ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">BÖLÜM 05-06</div>
+    <h2>Kalp Yetersizliği — Mekanizma ve Tedavi</h2>
+  </div>
+
+  <div class="vs-box no-break">
+    <div class="vs-left">
+      <h4 style="color:#2196f3;">💪 HFrEF (EF &lt;%40)</h4>
+      <ul style="font-size:10pt;">
+        <li>Pompa zayıf → SV↓</li>
+        <li>Hacim + dolum basıncı ↑</li>
+        <li>LV dilatasyonu</li>
+        <li>Örnek: KAH</li>
+        <li><strong>Tedavi:</strong> ARNI/ACEi/ARB + β-bloker + MRA + SGLT2i</li>
+      </ul>
+    </div>
+    <div class="vs-center">VS</div>
+    <div class="vs-right">
+      <h4 style="color:#f44336;">🧱 HFpEF (EF ≥%50)</h4>
+      <ul style="font-size:10pt;">
+        <li>Gevşeme bozuk → basınç↑</li>
+        <li>Küçük hacim artışında basınç çok ↑</li>
+        <li>LVH, multimorbidite</li>
+        <li>Örnek: HT kalp hastalığı</li>
+        <li><strong>Tedavi:</strong> SGLT2i, MRA</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="flow-container no-break">
+    <h3>Nörohormonal Kısır Döngü</h3>
+    <div class="mermaid">
+graph TB
+    CO["CO↓<br/>Debi düşer"] --> BR["Baroreseptör<br/>uyarı↓"]
+    CO --> RP["Renal<br/>perfüzyon↓"]
+    BR & RP --> SR["SNS + RAAS<br/>AKTİVASYONU"]
+    SR --> KISA["KISA VADE ✅<br/>Hız↑, İnotropi↑<br/>Vazokonstriksiyon<br/>Sıvı tutulumu"]
+    SR --> UZUN["UZUN VADE ❌<br/>Ard/Ön yük↑<br/>Toksisite, Fibrozis<br/>Olumsuz yeniden şekillenme"]
+    UZUN --> CO
+
+    style CO fill:#e74c3c,color:#fff,stroke:none
+    style SR fill:#8e44ad,color:#fff,stroke:none
+    style UZUN fill:#c0392b,color:#fff,stroke:none
+    style KISA fill:#27ae60,color:#fff,stroke:none
+    </div>
+  </div>
+
+  <div class="diagram-container no-break">
+    <h3>KY Evreleri (ACC/AHA)</h3>
+    <div class="visual-flow">
+      <div class="flow-step" style="background:#a8dadc;border-color:#0a9396;">
+        <strong>A</strong><br/><small>Risk var<br/>Semptom/yapı yok</small>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" style="background:#94d2bd;border-color:#0a9396;">
+        <strong>B (Pre-HF)</strong><br/><small>Yapısal hastalık var<br/>Semptom yok</small>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" style="background:#e9d8a6;border-color:#ee9b00;">
+        <strong>C</strong><br/><small>Mevcut/geçmiş<br/>semptomlar</small>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" style="background:#e76f51;color:white;border-color:#9a031e;">
+        <strong>D</strong><br/><small>Ağır semptom<br/>İleri KY</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="mindmap-container no-break">
+    <h3>HFrEF Tedavi Dörtlüsü + Ek</h3>
+    <div class="mermaid">
+graph TB
+    HF["💊 HFrEF TEDAVİ"]
+    HF --> A["🏥 ARNI/ACEi/ARB<br/>sakubitril/valsartan<br/>enalapril, ramipril"]
+    HF --> B["💚 β-Bloker<br/>bisoprolol, karvedilol<br/>metoprolol süksinat"]
+    HF --> M["🟡 MRA<br/>spironolakton<br/>eplerenon"]
+    HF --> S["🔵 SGLT2i<br/>DM olMASA bile!<br/>Mortalite↓"]
+    HF --> D["💧 Loop Diüretik<br/>Sıvı yükünde"]
+    HF --> I["⚡ İvabradin<br/>Hız >70, maks β-blokerde"]
+
+    style HF fill:#0f4c5c,color:#fff,stroke:none
+    style S fill:#2196f3,color:#fff,stroke:none
+    </div>
+  </div>
+
+  <div class="diagram-container no-break">
+    <h3>Sol vs Sağ Kalp Yetersizliği</h3>
+    <table class="compare-table">
+      <thead>
+        <tr><th>Özellik</th><th>Sol KY</th><th>Sağ KY</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ana mekanizma</td><td>Pulmoner konjesyon</td><td>Sistemik konjesyon</td></tr>
+        <tr><td>Semptomlar</td><td>Dispne, ortopne, PND</td><td>Ödem, hepatomegali, asit</td></tr>
+        <tr><td>Muayene</td><td>Raller, S3/S4, kardiyomegali</td><td>JVD, ödem, hepatomegali</td></tr>
+        <tr><td>Grafi</td><td>Yarasa kanadı, Kerley B</td><td>Kardiyomegali</td></tr>
+        <tr><td>JVP</td><td>Normal/hafif ↑</td><td>&gt;8 cmH₂O, belirgin ↑</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="diagram-container no-break">
+    <h3>Şok Tipleri Karşılaştırması</h3>
+    <table class="compare-table">
+      <thead>
+        <tr><th>Şok Tipi</th><th>CO</th><th>Ön Yük</th><th>Direnç (SVR)</th><th>Tedavi</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="badge badge-danger">Kardiyojenik</span></td><td>↓↓</td><td>↑</td><td>↑</td><td>İnotrop + Revaskülarizasyon</td></tr>
+        <tr><td><span class="badge badge-warning">Hipovolemik</span></td><td>↓</td><td>↓↓</td><td>↑</td><td>IV Sıvı</td></tr>
+        <tr><td><span class="badge badge-info">Dağılımsal/Septik</span></td><td>↑/N</td><td>↓</td><td>↓↓</td><td>Presör + Sıvı + Antibiyotik</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ============ SECTION 7: Kardiyomiyopatiler ============ -->
+<div class="section">
+  <div class="section-header orange">
+    <div class="section-num">BÖLÜM 07</div>
+    <h2>Kardiyomiyopatiler</h2>
+  </div>
+
+  <div class="diagram-container">
+    <h3>3 Kardiyomiyopati — Hızlı Karşılaştırma</h3>
+    <table class="compare-table">
+      <thead>
+        <tr><th>Özellik</th><th>DCM (Dilate)</th><th>HCM (Hipertrofik)</th><th>RCM (Restriktif)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Kalp boyutu</strong></td><td>Geniş, zayıf</td><td>Kalın septum</td><td>Normal boyut, sert</td></tr>
+        <tr><td><strong>EF</strong></td><td>↓↓ Düşük</td><td>Normal/↑</td><td>Normal</td></tr>
+        <tr><td><strong>Temel sorun</strong></td><td>Kontraktilite↓</td><td>Diyastolik dolum↓ + LVOTO</td><td>Esneyememe→dolum↓</td></tr>
+        <tr><td><strong>Muayene</strong></td><td>Pulsus alternans, S3</td><td>Ejeksiyon üfürümü</td><td>Dolum bozukluğu</td></tr>
+        <tr><td><strong>Genetik</strong></td><td>%20-50 ailesel</td><td>OD, β-miyozin</td><td>İdiyopatik, amiloid</td></tr>
+        <tr><td><strong>Tedavi</strong></td><td>HFrEF dörtlüsü</td><td>β-bloker, mavakamten</td><td>Semptomatik</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="flow-container no-break">
+    <h3>HCM — Dinamik LVOTO Mekanizması</h3>
+    <div class="mermaid">
+graph LR
+    KS["Kalın Septum"] --> YAK["Mitral Kapak<br/>Septuma Yaklaşır"]
+    YAK --> OBS["Dinamik LVOT<br/>OBSTRÜKSİYONU"]
+    OBS --> MK["Mitral Kaçak"]
+    OBS --> SV["SV↓ → Senkop"]
+
+    style OBS fill:#e74c3c,color:#fff,stroke:none
+    </div>
+  </div>
+
+  <div class="key-point exam">
+    <div>
+      <strong>SINAV TUZAĞI — Manevra Tablosu:</strong><br>
+      <span class="badge badge-info">Ayakta/Valsalva:</span> AS↓, HCM↑, MVP↑ &nbsp;
+      <span class="badge badge-warning">El sıkma:</span> Üçü de ↓ &nbsp;
+      <span class="badge badge-success">Çömelme:</span> AS↑, HCM↓, MVP↓
+    </div>
+  </div>
+</div>
+
+<!-- ============ SECTION 8-9: Aritmiler ============ -->
+<div class="section">
+  <div class="section-header red">
+    <div class="section-num">BÖLÜM 08-09</div>
+    <h2>Aritmiler: Bradikardi ve Taşikardi</h2>
+  </div>
+
+  <div class="mindmap-container">
+    <h3>İleti Sistemi ve Aritmi Zihin Haritası</h3>
+    <div class="mermaid">
+graph TB
+    IS["⚡ İLETİ SİSTEMİ"]
+    IS --> BRAD["🐌 BRADİKARDİ<br/>&lt;60/dk"]
+    IS --> TACH["🏃 TAŞİKARDİ<br/>&gt;100/dk"]
+
+    BRAD --> SB["Sinüs Bradikardisi<br/>Atlet, vagal, hipotermia"]
+    BRAD --> AVB["AV Blok"]
+    AVB --> AV1["I°: PR uzun"]
+    AVB --> AV2["II° Tip I: PR artar, QRS düşer"]
+    AVB --> AV3["II° Tip II: PR sabit, QRS düşer"]
+    AVB --> AV4["III°: P-QRS bağımsız"]
+
+    TACH --> DAR["DAR QRS<br/>&lt;120 ms"]
+    TACH --> GEN["GENİŞ QRS<br/>≥120 ms"]
+
+    DAR --> AF["AF: f dalgası,<br/>düzensiz RR"]
+    DAR --> FL["Flutter: testere dişi"]
+    DAR --> AVNRT["AVNRT: P yok"]
+    DAR --> AVRT["AVRT: aksesuar yol"]
+
+    GEN --> VT["VT: AV disosiyasyon"]
+    GEN --> ABERR["Aberan SVT"]
+    GEN --> WPW["WPW: delta dalgası"]
+
+    style BRAD fill:#3498db,color:#fff,stroke:none
+    style TACH fill:#e74c3c,color:#fff,stroke:none
+    style VT fill:#c0392b,color:#fff,stroke:none
+    </div>
+  </div>
+
+  <div class="diagram-container no-break">
+    <h3>AV Blok Basamakları</h3>
+    <table class="compare-table">
+      <thead>
+        <tr><th>Tip</th><th>PR</th><th>QRS Düşmesi</th><th>Ritim</th><th>Aciliyet</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="badge badge-success">I°</span></td><td>Uzun (&gt;200 ms)</td><td>Yok</td><td>Düzenli</td><td>İzlem</td></tr>
+        <tr><td><span class="badge badge-warning">II° Tip I</span></td><td>Giderek uzar</td><td>Periyodik</td><td>PP sabit, RR değişken</td><td>Atropin</td></tr>
+        <tr><td><span class="badge badge-danger">II° Tip II</span></td><td>Sabit</td><td>Ani</td><td>PP sabit, RR değişken</td><td>Pacing düşün</td></tr>
+        <tr><td><span class="badge badge-danger">III°</span></td><td>Değişken</td><td>P-QRS bağımsız</td><td>PP ve RR kendi içinde düzenli</td><td>Pacing</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="diagram-container no-break">
+    <h3>Dal Blokları — V1'e Bak!</h3>
+    <div class="two-col">
+      <div class="info-card" style="border-left-color:#2196f3;">
+        <h4 style="color:#2196f3;">RBBB (V1 Pozitif)</h4>
+        <ul>
+          <li>QRS ≥120 ms</li>
+          <li>V1: <strong>rSR′</strong> (tavşan kulağı)</li>
+          <li>V1 terminali pozitif</li>
+        </ul>
+      </div>
+      <div class="info-card" style="border-left-color:#f44336;">
+        <h4 style="color:#f44336;">LBBB (V1 Negatif)</h4>
+        <ul>
+          <li>QRS ≥120 ms</li>
+          <li>V1 terminali negatif</li>
+          <li>V5-6: geniş çentikli R</li>
+          <li>Lateral Q kaybı</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="key-point danger">
+    <div>
+      <strong>WPW'de YASAKLI İlaçlar:</strong> Digoksin ve Verapamil kontrendike! Aksesuar yoldan hızlı iletim → VF riski.
+    </div>
+  </div>
+</div>
+
+<!-- ============ SECTION 10: VT-SVT Ayrımı ============ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">BÖLÜM 10</div>
+    <h2>VT-SVT Ayrımı, VF ve Senkop</h2>
+  </div>
+
+  <div class="flow-container">
+    <h3>Brugada Kriterleri — Geniş QRS Taşikardi VT mi SVT mi?</h3>
+    <div class="mermaid">
+graph TB
+    START["Düzenli Geniş<br/>QRS Taşikardi"]
+    START --> Q1{"V1-6'da RS<br/>yok mu?"}
+    Q1 -->|EVET| VT1["🔴 VT"]
+    Q1 -->|HAYIR| Q2{"R başlangıcı–S çukuru<br/>&gt;0,1 sn mi?"}
+    Q2 -->|EVET| VT2["🔴 VT"]
+    Q2 -->|HAYIR| Q3{"AV disosiyasyon,<br/>füzyon, yakalama?"}
+    Q3 -->|EVET| VT3["🔴 VT"]
+    Q3 -->|HAYIR| Q4{"V1-V6'da VT<br/>morfolojisi?"}
+    Q4 -->|EVET| VT4["🔴 VT"]
+    Q4 -->|HAYIR| SVT["🟢 Aberan SVT"]
+
+    style VT1 fill:#c0392b,color:#fff,stroke:none
+    style VT2 fill:#c0392b,color:#fff,stroke:none
+    style VT3 fill:#c0392b,color:#fff,stroke:none
+    style VT4 fill:#c0392b,color:#fff,stroke:none
+    style SVT fill:#27ae60,color:#fff,stroke:none
+    </div>
+  </div>
+
+  <div class="key-point danger">
+    <div>
+      <strong>ALTIN KURAL:</strong> Geniş QRS taşikardisinde aksi kanıtlanana kadar <strong>VT kabul et!</strong>
+      VT sanıp SVT ilaçları (verapamil, diltiazem) vermek → VF riski!
+    </div>
+  </div>
+
+  <div class="diagram-container no-break">
+    <h3>Senkop Ayırıcı Tanı — Hızlı Ayrım</h3>
+    <div class="mermaid">
+graph TB
+    S["😵 SENKOP<br/>~10 sn beyin hipoperfüzyonu"]
+    S --> R["♻️ REFLEKS<br/>(en sık: vazovagal)"]
+    S --> O["🧍 ORTOSTATİK<br/>Ayağa kalkış"]
+    S --> A["⚡ ARİTMİK<br/>Bradikardi/Taşikardi"]
+    S --> Y["🫀 YAPISAL<br/>AS, HCM, PH"]
+
+    R --> RIP["Uzun ayakta durma<br/>Kan görme, ağrı<br/>Sıcak/kalabalık"]
+    O --> OIP["İlaç değişikliği<br/>Otonom yetmezlik<br/>Dehidratasyon"]
+    A --> AIP["Efor sırasında<br/>Yatarken<br/>Çarpıntı öncesi"]
+    Y --> YIP["Efor sırasında<br/>Ailede ani ölüm"]
+
+    style R fill:#3498db,color:#fff,stroke:none
+    style A fill:#e74c3c,color:#fff,stroke:none
+    style Y fill:#8e44ad,color:#fff,stroke:none
+    </div>
+  </div>
+</div>
+
+<!-- ============ SECTION 11-12: Kapak Hastalıkları ============ -->
+<div class="section">
+  <div class="section-header orange">
+    <div class="section-num">BÖLÜM 11-12</div>
+    <h2>Kapak Hastalıkları</h2>
+  </div>
+
+  <div class="diagram-container">
+    <h3>Kapak Hastalıkları — Ana Karşılaştırma Tablosu</h3>
+    <table class="compare-table">
+      <thead>
+        <tr><th>Kapak</th><th>Üfürüm</th><th>Temel Bulgu</th><th>Mekanizma</th><th>Cerrahi İpucu</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="badge badge-danger">Aort Darlığı (AS)</span></td>
+          <td>Sistolik ejeksiyon, karotise yayılır</td>
+          <td>Parvus et tardus nabız</td>
+          <td>Basınç yükü → LVH → HFpEF</td>
+          <td>Semptomatik veya EF&lt;%50</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-info">Aort Yetersizliği (AR)</span></td>
+          <td>Diyastolik dekreşendo</td>
+          <td>Corrigan nabzı, geniş nabız basıncı</td>
+          <td>Hacim yükü → LV dilatasyon</td>
+          <td>Semptomatik veya EF&lt;%50 veya LVESD&gt;50mm</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-warning">Mitral Yetersizliği (MR)</span></td>
+          <td>Pansistolik, apekste</td>
+          <td>Laterale kaymış apeks</td>
+          <td>Hacim yükü → LA/LV genişleme</td>
+          <td>Semptomatik veya EF&lt;%60, LVESD&gt;40mm</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">Mitral Darlığı (MS)</span></td>
+          <td>Diyastolik dekr-kreşendo + opening snap</td>
+          <td>P mitrale, küçük nabız</td>
+          <td>LA basıncı↑ → AF → trombüs</td>
+          <td>Alan &lt;1,5 cm² + semptom</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-primary">Triküspit YZ (TR)</span></td>
+          <td>Sistolik, inspirasyonla ↑</td>
+          <td>Rivero-Carvallo bulgusu</td>
+          <td>RA + sistemik venöz basınç↑</td>
+          <td>Nedeni tedavi et</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="flow-container no-break">
+    <h3>Kronik MR → Akut MR — Fark Nedir?</h3>
+    <div class="two-col">
+      <div class="info-card teal">
+        <h4>Kronik MR (Yavaş)</h4>
+        <ul>
+          <li>LA/LV genişlemiş</li>
+          <li>EF yanıltıcı yüksek</li>
+          <li>10-15 yıl kompanse</li>
+          <li>EF&lt;%60 → operasyon düşün</li>
+        </ul>
+      </div>
+      <div class="info-card red">
+        <h4>Akut MR (Ani)</h4>
+        <ul>
+          <li>LA/LV normal boyut</li>
+          <li>Normal siluet + ağır pulmoner ödem</li>
+          <li>Hipotansiyon + taşikardi</li>
+          <li>Kardiyak acil → cerrahi</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SECTION 13-14: Hipertansiyon ============ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">BÖLÜM 13-14</div>
+    <h2>Hipertansiyon</h2>
+  </div>
+
+  <div class="flow-container">
+    <h3>HT Tedavi Algoritması</h3>
+    <div class="mermaid">
+graph TB
+    HT["🩺 HİPERTANSİYON"] --> STEP1["1. BASAMAK<br/>ACEi/ARB + KKB veya Diüretik"]
+    STEP1 -->|Yetersiz| STEP2["2. BASAMAK<br/>ACEi/ARB + KKB + Diüretik"]
+    STEP2 -->|Yetersiz| STEP3["3. BASAMAK — DİRENÇLİ<br/>+ Spironolakton 25-50 mg<br/>veya α/β-bloker"]
+    STEP3 --> UZMAN["🏥 Uzman Değerlendirme"]
+
+    HT --> MONO["MONOTERAPİ<br/>Düşük risk, evre 1<br/>Sistolik &lt;150, ≥80 yaş"]
+
+    style HT fill:#0f4c5c,color:#fff,stroke:none
+    style STEP3 fill:#e74c3c,color:#fff,stroke:none
+    </div>
+  </div>
+
+  <div class="diagram-container no-break">
+    <h3>Eş Hastalığa Göre İlaç Seçimi</h3>
+    <table class="compare-table">
+      <thead>
+        <tr><th>Eş Hastalık</th><th>Önerilen İlaçlar</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>DM / Metabolik Sendrom</td><td>ACEi/ARB + KKB</td></tr>
+        <tr><td>KBH / Proteinüri</td><td>ACEi/ARB + Diüretik + KKB + SGLT2i</td></tr>
+        <tr><td>MI Sonrası</td><td>β-bloker + ACEi/ARB + MRA</td></tr>
+        <tr><td>AF</td><td>β-bloker + ACEi/ARB</td></tr>
+        <tr><td>HFrEF</td><td>ACEi/ARB + MRA + β-bloker + SGLT2i + Diüretik</td></tr>
+        <tr><td>Gebelik</td><td>Metildopa veya Labetalol <span class="badge badge-danger">ACEi/ARB KONTRENDİKE</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="diagram-container no-break">
+    <h3>Kontrendikasyonlar — Kritik Tablo</h3>
+    <table class="compare-table">
+      <thead>
+        <tr><th>İlaç</th><th>Kontrendikasyon</th><th>Yan Etki</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>ACEi</td><td>Gebelik, hiperkalemi, renal arter stenozu</td><td>Öksürük</td></tr>
+        <tr><td>ARB</td><td>Gebelik, hiperkalemi, renal arter stenozu</td><td>-</td></tr>
+        <tr><td>Nondihidropiridin KKB</td><td>EF&lt;40, bradikardi, AV blok</td><td>Ödem</td></tr>
+        <tr><td>Tiyazid</td><td>Aktif gut</td><td>Glukoz↑, ürik asit↑, Ca↑</td></tr>
+        <tr><td>β-bloker</td><td>Akut astım, AV blok, bradikardi</td><td>KOAH, impotans</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="key-point exam">
+    <div>
+      <strong>SINAV TUZAĞI:</strong> ACEi/ARB sonrası kreatinin >%30 artışı = renovasküler HT ipucu!
+      Dirençli HT = diüretik DAHİL 3 ilaca rağmen veya 4 ilaçla kontrol.
+    </div>
+  </div>
+</div>
+
+<!-- ============ SECTION 15: Endokrin HT ============ -->
+<div class="section">
+  <div class="section-header red">
+    <div class="section-num">BÖLÜM 15</div>
+    <h2>Endokrin Hipertansiyon</h2>
+  </div>
+
+  <div class="diagram-container">
+    <h3>Endokrin HT Nedenleri — Hızlı Karşılaştırma</h3>
+    <table class="compare-table">
+      <thead>
+        <tr><th>Neden</th><th>Anahtar İpucu</th><th>Tanı</th><th>Tedavi</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Primer Aldosteronizm</strong></td>
+          <td>Hipokalemi, metabolik alkaloz</td>
+          <td>Aldosteron/Renin oranı → Baskılama testi</td>
+          <td>Tek taraf: Adrenalektomi<br>Bilateral: Spironolakton</td>
+        </tr>
+        <tr>
+          <td><strong>Feokromositoma</strong></td>
+          <td>Ataklarla: HT + Baş ağrısı + Terleme + Çarpıntı</td>
+          <td>İdrar metanefrin/katekolamin, MR</td>
+          <td>Cerrahi (önce α-bloker, sonra β-bloker)</td>
+        </tr>
+        <tr>
+          <td><strong>Cushing</strong></td>
+          <td>Santral obezite, ay yüz, stria, miyopati</td>
+          <td>İdrar kortizol, deksametazon baskılama</td>
+          <td>Nedene yönelik + ACEi/ARB + KKB</td>
+        </tr>
+        <tr>
+          <td><strong>Hipertiroidi</strong></td>
+          <td>Debi↑, sistolik basınç↑</td><td>TSH, sT4</td>
+          <td>Antitiroid tedavi</td>
+        </tr>
+        <tr>
+          <td><strong>Hipotiroidi</strong></td>
+          <td>Diyastolik basınç↑ baskın</td><td>TSH↑</td>
+          <td>Tiroid replasman</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mnemonic">
+    <h4>Feokromositoma Klasik Üçlüsü</h4>
+    <div class="letters">3 T</div>
+    <div class="explanation">
+      <strong>T</strong>ansiyon (ataklarla HT) &nbsp;•&nbsp; <strong>T</strong>erleme &nbsp;•&nbsp; <strong>T</strong>aşikardi/çarpıntı<br>
+      + Baş ağrısı
+    </div>
+  </div>
+</div>
+
+<!-- ============ SECTION 16-17: Endokardit ============ -->
+<div class="section">
+  <div class="section-header teal">
+    <div class="section-num">BÖLÜM 16-17</div>
+    <h2>Enfektif Endokardit</h2>
+  </div>
+
+  <div class="summary-strip">
+    <div class="summary-item" style="border-top-color:#e74c3c;">
+      <div class="number" style="color:#e74c3c;">S. aureus</div>
+      <div class="label">En Sık Etken</div>
+    </div>
+    <div class="summary-item" style="border-top-color:#f39c12;">
+      <div class="number" style="color:#f39c12;">Ateş</div>
+      <div class="label">En Sık Bulgu</div>
+    </div>
+    <div class="summary-item" style="border-top-color:#e74c3c;">
+      <div class="number" style="color:#e74c3c;">KY</div>
+      <div class="label">En Sık Komplikasyon</div>
+    </div>
+    <div class="summary-item" style="border-top-color:#9b59b6;">
+      <div class="number" style="color:#9b59b6;">Eski EK</div>
+      <div class="label">En Yüksek Risk</div>
+    </div>
+  </div>
+
+  <div class="flow-container">
+    <h3>Endokardit Tanı Algoritması</h3>
+    <div class="mermaid">
+graph TB
+    SH["🔥 Ateş + Yeni Üfürüm?"] --> KU["🧫 Kültür x3<br/>AB öncesi, 30dk arayla"]
+    KU --> EKO["🫀 EKO<br/>TTE → TEE"]
+    EKO --> KDO["Kalp dışı odak<br/>araştır"]
+    KDO --> DUKE["📋 DUKE ÖLÇÜTLERİ"]
+    DUKE --> KES["✅ KESİN: 2 majör<br/>veya 1M + ≥3m<br/>veya 5 minör"]
+    DUKE --> OL["⚠️ OLASI: 1M + 1-2m"]
+
+    style SH fill:#e74c3c,color:#fff,stroke:none
+    style KES fill:#27ae60,color:#fff,stroke:none
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="info-card red">
+      <h4>🔴 Majör Kriterler</h4>
+      <ul>
+        <li>Tipik etkenle 2 ayrı (+) kültür</li>
+        <li>Coxiella: tek (+) kültür</li>
+        <li>Görüntülemede valvüler lezyon</li>
+      </ul>
+    </div>
+    <div class="info-card orange">
+      <h4>🟠 Minör Kriterler</h4>
+      <ul>
+        <li>Yatkın kalp hastalığı / IV madde</li>
+        <li>Ateş >38°C</li>
+        <li>Vasküler: Janeway, emboli, infarkt</li>
+        <li>İmmünolojik: Osler, Roth, RF, GN</li>
+        <li>Atipik kültür/seroloji</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mnemonic">
+    <h4>Cilt Bulguları — Kimde Ne Var?</h4>
+    <div class="explanation">
+      <strong>J</strong>aneway → <strong>A</strong>ğrısız avuç/ayak tabanı (septik emboli) &nbsp;•&nbsp;
+      <strong>O</strong>sler → A<strong>ğ</strong>rılı parmak ucu (immün) &nbsp;•&nbsp;
+      <strong>R</strong>oth → Retina kanaması &nbsp;•&nbsp;
+      <strong>S</strong>plinter → Tırnak altı çizgisi
+    </div>
+  </div>
+</div>
+
+<!-- ============ SECTION 18: Konjenital ============ -->
+<div class="section">
+  <div class="section-header orange">
+    <div class="section-num">BÖLÜM 18</div>
+    <h2>Erişkinde Konjenital Kalp Hastalığı</h2>
+  </div>
+
+  <div class="mindmap-container">
+    <h3>Konjenital Kalp Hastalıkları — Hızlı Tanı Haritası</h3>
+    <div class="mermaid">
+graph TB
+    KKH["🫀 KONJENİTAL<br/>KALP HASTALIKLARI"]
+    KKH --> ACY["Asiyonotik<br/>(Sol→Sağ Şant)"]
+    KKH --> SY["Siyonotik<br/>(Sağ→Sol Şant)"]
+
+    ACY --> ASD["ASD<br/>Sabit çift S2<br/>RBBB"]
+    ACY --> VSD["VSD (EN SIK)<br/>Holosistolik üfürüm"]
+    ACY --> PDA["PDA<br/>Sürekli makine üfürümü"]
+    ACY --> KOA["Koarktasyon<br/>Kol-bacak basınç farkı"]
+
+    SY --> EIS["Eisenmenger<br/>Şant dönüşümü"]
+    SY --> TOF["Fallot Tetralojisi"]
+    SY --> TGA["Büyük Arter<br/>Transpozisyonu"]
+
+    style KKH fill:#0f4c5c,color:#fff,stroke:none
+    style ACY fill:#3498db,color:#fff,stroke:none
+    style SY fill:#9b59b6,color:#fff,stroke:none
+    </div>
+  </div>
+
+  <div class="flow-container no-break">
+    <h3>Eisenmenger Dönüşümü</h3>
+    <div class="mermaid">
+graph LR
+    LS["Sol→Sağ Şant<br/>(büyük defekt)"] --> PA["Pulmoner Akım↑"]
+    PA --> PH["Pulmoner<br/>Obstrüktif<br/>Damar Hastalığı"]
+    PH --> BP["Pulmoner basınç<br/>= Sistemik"]
+    BP --> SL["Şant Dönüşümü<br/>Sağ→Sol"]
+    SL --> SN["SİYANOZ<br/>Kapama KONTRENDİKE"]
+
+    style SN fill:#9b59b6,color:#fff,stroke:none
+    style SL fill:#e74c3c,color:#fff,stroke:none
+    </div>
+  </div>
+
+  <div class="key-point exam">
+    <div>
+      <strong>SINAV İPUÇLARI:</strong><br>
+      En sık KKH = <strong>VSD</strong> •
+      Sabit çift S2 = <strong>ASD</strong> •
+      Sürekli makine üfürümü = <strong>PDA</strong> •
+      Kol-bacak basınç farkı = <strong>Koarktasyon</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SECTION 19: Pulmoner HT ============ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">BÖLÜM 19</div>
+    <h2>Pulmoner Hipertansiyon (PH)</h2>
+  </div>
+
+  <div class="diagram-container">
+    <h3>PH — 5 Grup</h3>
+    <table class="compare-table">
+      <thead>
+        <tr><th>Grup</th><th>Neden</th><th>Örnekler</th><th>Tedavi</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="badge badge-danger">1 PAH</span></td><td>Pulmoner arteriyel</td><td>Konjenital, bağ dokusu, HIV</td><td>Bosentan, Sildenafil, Epoprostenol</td></tr>
+        <tr><td><span class="badge badge-warning">2 Sol Kalp</span></td><td>En sık grup!</td><td>Sol KY, kapak hastalığı</td><td>Altta yatan nedeni tedavi et</td></tr>
+        <tr><td><span class="badge badge-info">3 Akciğer</span></td><td>Hipoksemi</td><td>KOAH, interstisyel hastalık</td><td>O₂, akciğer hastalığı tedavisi</td></tr>
+        <tr><td><span class="badge badge-primary">4 Kronik TE</span></td><td>Tromboembolik</td><td>Kronik PE</td><td>PEA, BPA, Riosiguat</td></tr>
+        <tr><td><span class="badge badge-success">5 Belirsiz</span></td><td>Çok etkenli</td><td>Sistemik, metabolik, KBH</td><td>Nedene yönelik</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="key-point tip">
+    <div>
+      <strong>Tanı:</strong> İlk adım EKG + Eko → Altın standart: Sağ kalp kateterizasyonu → mPAP >20 mmHg.
+      <br><strong>En sık grup:</strong> Grup 2 (sol kalp hastalığı).
+    </div>
+  </div>
+
+  <div class="diagram-container no-break">
+    <h3>PH Özgül Tedavi Yolları</h3>
+    <div class="mermaid">
+graph TB
+    PH["PH Tedavi<br/>Yolları"]
+    PH --> ET["Endotelin Yolu<br/>→ Vazokonstriksiyon"]
+    PH --> NO["NO-sGC-cGMP Yolu<br/>→ Vazodilatasyon"]
+    PH --> PR["Prostasiklin Yolu<br/>→ Vazodilatasyon"]
+    PH --> AK["Aktivin Yolu"]
+
+    ET --> BOS["Bosentan"]
+    NO --> SIL["Sildenafil/Tadalafil"]
+    NO --> RIO["Riosiguat (Grup 4)"]
+    PR --> EPO["Epoprostenol/Treprostinil"]
+    AK --> SOT["Sotatersept"]
+
+    style ET fill:#e74c3c,color:#fff,stroke:none
+    style NO fill:#27ae60,color:#fff,stroke:none
+    style PR fill:#3498db,color:#fff,stroke:none
+    </div>
+  </div>
+</div>
+
+<!-- ============ SECTION 20: Sistemik Hastalıklar ============ -->
+<div class="section">
+  <div class="section-header red">
+    <div class="section-num">BÖLÜM 20</div>
+    <h2>Sistemik Hastalıklar ve Gebelik</h2>
+  </div>
+
+  <div class="diagram-container">
+    <h3>Bağ Dokusu ve Vaskülit — Kalp Tutulumu</h3>
+    <table class="compare-table">
+      <thead>
+        <tr><th>Hastalık</th><th>Kalp Tutulumu</th><th>Anahtar İpucu</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Romatoid Artrit</td><td>En sık perikardit</td><td>Pozisyonel, inspirasyonla artan ağrı</td></tr>
+        <tr><td>SLE</td><td>Perikardit, Libman-Sacks endokarditi</td><td>Asemptomatik mitral/aort tutulumu</td></tr>
+        <tr><td>Ankilozan Spondilit</td><td>Aort kökü kalınlaşma → AR</td><td>HLA-B27</td></tr>
+        <tr><td>Takayasu</td><td>Aort/kol nabızsızlığı</td><td>Kolda nabız yok</td></tr>
+        <tr><td>Behçet</td><td>Arkus anevrizma, proksimal aortit</td><td>Multisistem vaskülit</td></tr>
+        <tr><td>FMF</td><td>Perikardit</td><td>Fibrinojen ↑</td></tr>
+        <tr><td>Sarkoidoz</td><td>AV blok, restriktif KMP, VT</td><td>Perikardit</td></tr>
+        <tr><td>Marfan</td><td>Aort diseksiyon riski</td><td>Aort çapı >4,5cm → cerrahi</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card-grid">
+    <div class="info-card">
+      <h4>🤰 Gebelik ve Kalp</h4>
+      <ul>
+        <li>Kan hacmi↑, dilüsyonel anemi</li>
+        <li>Hız↑, aritmi riski↑</li>
+        <li>Sistemik direnç↓ → KB genelde normal</li>
+        <li><span class="badge badge-danger">ACEi/ARB KONTRENDİKE</span></li>
+        <li>İlk seçenek: Metildopa veya Labetalol</li>
+      </ul>
+    </div>
+    <div class="info-card orange">
+      <h4>🩸 Diyabet ve Kalp</h4>
+      <ul>
+        <li>KV risk 2-4 kat ↑</li>
+        <li>%80 aterosklerotik damar hastalığı</li>
+        <li>Nöropati → sessiz MI</li>
+        <li>HT+DM → ACEi/ARB/KKB</li>
+        <li>KY+DM → SGLT2i</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="key-point exam">
+    <div>
+      <strong>SİSTEMİK HASTALIK EŞLEŞMELERİ:</strong><br>
+      Ağrısız MI → <strong>Diyabetik nöropati</strong> •
+      Kolda nabız yok → <strong>Takayasu</strong> •
+      Sağ kapak → <strong>Karsinoid</strong> •
+      Gebelikte → <strong>ACEi/ARB yasak!</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ============ MASTER PAGE 1: Göğüs Ağrısı ============ -->
+<div class="section">
+  <div class="section-header red">
+    <div class="section-num">MASTER HARİTA · M1</div>
+    <h2>💔 Göğüs Ağrısı Master Rehberi</h2>
+    <div class="section-desc">Ani mi Kronik mi? Angina mı Plöritik mi Diseksiyon mu? — Tek bakışta tam ayrım</div>
+  </div>
+
+  <div class="mindmap-container">
+    <h3>Göğüs Ağrısında İlk Karar Ağacı</h3>
+    <div class="mermaid">
+graph TB
+    GA["💔 GÖĞÜS AĞRISI"] --> ZAMAN{"Başlangıç ve Süre?"}
+    ZAMAN -->|"ANİ / &gt;20-30 dk / İstirahatte"| AKUT["🚨 AKUT / ACİL DÜŞÜN<br/>İlk Adım: EKG + Troponin"]
+    ZAMAN -->|"KRONİK / Eforla / 2-15 dk"| KRONIK["📋 KRONİK / STABİL<br/>CCS / Yapısal / GİS / Kas"]
+
+    AKUT --> N1{"Nitelik?"}
+    N1 -->|"Bası, sıkışma, yayılım"| AKS["🔴 AKS (STEMI / NSTEMI / UA)"]
+    N1 -->|"Yırtılır gibi, en şiddetli, sırta"| DIS["🟣 Akut Aort Diseksiyonu"]
+    N1 -->|"Batan, nefesle/öksürükle ↑<br/>Öne eğilince ↓"| PER["🔵 Akut Perikardit / PE / Pnömotoraks"]
+
+    KRONIK --> N2{"Nitelik?"}
+    N2 -->|"Eforla bası, dinlenme/nitratla ↓"| STAB["🟠 Stabil Angina (CCS) / AS / HCM"]
+    N2 -->|"Tek parmakla, basmakla ↑"| KAS["🟢 Kas-İskelet / Kostokondrit"]
+    N2 -->|"Yemekle, yanma, antiasitle ↓"| GIS["🟡 Reflü / Özofajit / Spazm"]
+
+    style GA fill:#1a1a2e,color:#fff,stroke:none
+    style AKUT fill:#c0392b,color:#fff,stroke:none
+    style KRONIK fill:#0f4c5c,color:#fff,stroke:none
+    style AKS fill:#e74c3c,color:#fff,stroke:none
+    style DIS fill:#8e44ad,color:#fff,stroke:none
+    style PER fill:#2980b9,color:#fff,stroke:none
+    </div>
+  </div>
+
+  <div class="diagram-container no-break">
+    <h3>Angina vs Plöritik vs Aort Diseksiyonu vs Kas-İskelet</h3>
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Özellik</th>
+          <th>Angina / MI (İskemik)</th>
+          <th>Perikardit (Plöritik)</th>
+          <th>Aort Diseksiyonu</th>
+          <th>Kas-İskelet / GİS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Nitelik</strong></td>
+          <td>Bası, sıkışma, ağırlık, yanma</td>
+          <td>Keskin, batan</td>
+          <td>Ani, yırtılır, hayatının en şiddetlisi</td>
+          <td>Batıcı (kas) / Yanıcı (GİS)</td>
+        </tr>
+        <tr>
+          <td><strong>Süre</strong></td>
+          <td>Angina: 2–30 dk<br>MI: genellikle &gt;30 dk</td>
+          <td>Saatler–günler (sürekli)</td>
+          <td>Saniyeler içinde zirve</td>
+          <td>Saniyelik (kas) / Yemek sonrası</td>
+        </tr>
+        <tr>
+          <td><strong>Tetikleyen</strong></td>
+          <td>Efor, soğuk, ağır yemek, stres</td>
+          <td>Derin nefes, öksürük, yutkunma, yatma</td>
+          <td>Hipertansiyon atağı, Marfan</td>
+          <td>Palpasyon, hareket (kas)<br>Yatma, yemek (reflü)</td>
+        </tr>
+        <tr>
+          <td><strong>Azaltan</strong></td>
+          <td>Dinlenme, nitrat (stabilde)</td>
+          <td><strong>Oturup öne eğilme</strong></td>
+          <td>Basitçe geçmez!</td>
+          <td>Pozisyon değişimi / Antiasit</td>
+        </tr>
+        <tr>
+          <td><strong>EKG &amp; İpucu</strong></td>
+          <td>Bölgesel ST↑/↓, resiprokal değişiklik, T↓</td>
+          <td>Yaygın konkav ST↑, resiprokal YOK, frotman</td>
+          <td>İki kol KB farkı, yeni AR üfürümü</td>
+          <td>EKG normal</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card-grid no-break">
+    <div class="info-card red">
+      <h4>⚠️ Angina Dışı Kardiyak Nedenler</h4>
+      <ul>
+        <li><strong>Aort Darlığı (AS):</strong> Efor anginası + senkop + parvus et tardus</li>
+        <li><strong>HCM:</strong> Efor dispnesi/anginası + Valsalva ile artan üfürüm</li>
+        <li><strong>Miyokardit:</strong> Batıcı ağrı + ateş + troponin↑</li>
+      </ul>
+    </div>
+    <div class="info-card orange">
+      <h4>🫁 Solunumsal &amp; Diğer Aciller</h4>
+      <ul>
+        <li><strong>Pulmoner Emboli:</strong> Ani plöritik ağrı + dispne + taşikardi</li>
+        <li><strong>Pnömotoraks:</strong> Ani tek taraflı ağrı + solunum sesi yok</li>
+        <li><strong>Ağrısız Angina Eşdeğeri:</strong> Diyabetiklerde / kadınlarda dispne, terleme, epigastrik ağrı</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ============ MASTER PAGE 2: Klinik Yaklaşımlar ============ -->
+<div class="section">
+  <div class="section-header teal">
+    <div class="section-num">MASTER HARİTA · M2</div>
+    <h2>🩺 Klinik Yaklaşımlar Master Haritası</h2>
+    <div class="section-desc">Karşına hangi acil veya kronik tablo gelirse gelsin: Adım adım ne yapacaksın?</div>
+  </div>
+
+  <div class="flow-container">
+    <h3>Acil Durumlarda Yaklaşım Akışları</h3>
+    <div class="mermaid">
+graph LR
+    subgraph AKS["1. AKUT GÖĞÜS AĞRISI"]
+      A1["EKG (ilk 10 dk)"] --> A2{"ST↑?"}
+      A2 -->|Evet| A3["Acil PCI + DAPT + UFH"]
+      A2 -->|Hayır| A4["Troponin → NSTEMI/UA<br/>Fibrinolitik VERME!"]
+    end
+
+    subgraph ARITMI["2. TAŞİKARDİ"]
+      T1{"Nabız / Stabilite?"} -->|İnstabil| T2["⚡ Acil DC Kardiyoversiyon"]
+      T1 -->|Stabil| T3{"QRS Genişliği?"}
+      T3 -->|Dar| T4["Vagal → Adenozin → β-bloker/KKB"]
+      T3 -->|Geniş| T5["VT kabul et! Amiodaron/Sınıf I<br/>Verapamil/Digoksin YASAK"]
+    end
+
+    style A3 fill:#c0392b,color:#fff,stroke:none
+    style T2 fill:#c0392b,color:#fff,stroke:none
+    style T5 fill:#e67e22,color:#fff,stroke:none
+    </div>
+  </div>
+
+  <div class="diagram-container no-break">
+    <h3>Tüm Ana Tablolarda Yaklaşım Özeti</h3>
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Klinik Tablo</th>
+          <th>1. Adım (Tanı)</th>
+          <th>Acil / İlk Müdahale</th>
+          <th>İdame / Kesin Tedavi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Stabil KAH (CCS)</strong></td>
+          <td>AKS dışla → Efor EKG / Stres Eko / BT Anjiyo</td>
+          <td>Risk faktörü kontrolü</td>
+          <td>β-bloker / Nitrat / KKB + Statin; yanıtsızsa revaskülarizasyon</td>
+        </tr>
+        <tr>
+          <td><strong>Akut Perikardit</strong></td>
+          <td>Ağrı + EKG + Frotman + Efüzyon</td>
+          <td>Yüksek risk varsa yatır (ateş&gt;38, tamponad, büyük efüzyon)</td>
+          <td><strong>Aspirin/İbuprofen + Kolşisin</strong> (nüksü önler); egzersiz kısıtla</td>
+        </tr>
+        <tr>
+          <td><strong>Kardiyak Tamponad</strong></td>
+          <td>Hipotansiyon + JVD + Sessiz kalp + Pulsus paradoxus</td>
+          <td><strong>ACİL PERİKARDİYOSENTEZ</strong></td>
+          <td>Altta yatan nedeni (TB, malignite vb.) tedavi et</td>
+        </tr>
+        <tr>
+          <td><strong>Konstriktif Perikardit</strong></td>
+          <td>Kussmaul + Knock + Karekök işareti (kateter)</td>
+          <td>Geçici/inflamatuvar ise antiinflamatuvar dene</td>
+          <td><strong>Cerrahi (Perikardiektomi)</strong></td>
+        </tr>
+        <tr>
+          <td><strong>HFrEF (EF &lt;%40)</strong></td>
+          <td>Eko + BNP/NT-proBNP</td>
+          <td>Sıvı yükü varsa <strong>Loop Diüretik</strong></td>
+          <td><strong>4'lü:</strong> ARNI/ACEi/ARB + β-bloker + MRA + SGLT2i (± ICD/CRT)</td>
+        </tr>
+        <tr>
+          <td><strong>Kardiyojenik Şok</strong></td>
+          <td>CI&lt;2,2 + SKB&lt;90 + PCWP&gt;18 + Oligüri</td>
+          <td>IV İnotrop/Vazopresör (Noradrenalin/Dobutamin) ± IABP</td>
+          <td>Nedene yönelik acil revaskülarizasyon</td>
+        </tr>
+        <tr>
+          <td><strong>Akut MR / AR</strong></td>
+          <td>Ani pulmoner ödem + şok + normal kalp silueti</td>
+          <td>Ard yük azalt (Nitroprussid) + İnotrop / IABP</td>
+          <td><strong>Acil kapak cerrahisi</strong> (AR'de β-blokerden kaçın!)</td>
+        </tr>
+        <tr>
+          <td><strong>Enfektif Endokardit</strong></td>
+          <td>AB öncesi 3 set kan kültürü + TTE/TEE</td>
+          <td>Ampirik IV antibiyotik + odak kontrolü</td>
+          <td>2–6+ hafta IV AB; KY / kontrolsüz enf. / &gt;10 mm emboli → <strong>Cerrahi</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Senkop</strong></td>
+          <td>Öykü + Ortostatik KB + 12 derivasyon EKG</td>
+          <td>Kardiyak ipucu varsa monitörize et</td>
+          <td>Vazovagal: manevra/sıvı-tuz; Aritmik: Holter/ILR → Pacemaker/ICD</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ============ MASTER PAGE 3: İlaçlar ============ -->
+<div class="section">
+  <div class="section-header orange">
+    <div class="section-num">MASTER HARİTA · M3</div>
+    <h2>💊 Kardiyoloji İlaçları Master Haritası</h2>
+    <div class="section-desc">Hangi ilaç ne işe yarar, nerede verilir, nerede KESİNLİKLE YASAKTIR?</div>
+  </div>
+
+  <div class="mindmap-container">
+    <h3>İlaç Grupları Zihin Haritası</h3>
+    <div class="mermaid">
+graph TB
+    ILAC["💊 KARDİYOLOJİ İLAÇLARI"]
+    ILAC --> RAAS["🩸 RAAS &amp; Nörohormon<br/>ACEi / ARB / ARNI / MRA"]
+    ILAC --> BB["🛡️ β-Blokerler<br/>Bisoprolol, Karvedilol, Metoprolol"]
+    ILAC --> KKB["🌀 Kalsiyum Kanal Blokerleri<br/>DHP vs Non-DHP"]
+    ILAC --> DIU["💧 Diüretikler &amp; SGLT2i<br/>Loop, Tiyazid, SGLT2i"]
+    ILAC --> ANT["🩸 Antitrombotikler<br/>DAPT, UFH/LMWH, DOAC, Varfarin"]
+    ILAC --> AAR["⚡ Antiaritmikler<br/>Adenozin, Amiodaron, Flekainid"]
+
+    style ILAC fill:#0f4c5c,color:#fff,stroke:none
+    style RAAS fill:#e74c3c,color:#fff,stroke:none
+    style BB fill:#27ae60,color:#fff,stroke:none
+    style KKB fill:#f39c12,color:#fff,stroke:none
+    style DIU fill:#3498db,color:#fff,stroke:none
+    style ANT fill:#8e44ad,color:#fff,stroke:none
+    style AAR fill:#d35400,color:#fff,stroke:none
+    </div>
+  </div>
+
+  <div class="diagram-container no-break">
+    <h3>İlaç Sınıfları — Mekanizma, Endikasyon ve Yasaklar</h3>
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>İlaç Grubu</th>
+          <th>Ne Yapar?</th>
+          <th>Ana Endikasyonlar</th>
+          <th>Kontrendikasyon / Sınav Tuzağı</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>ACEi / ARB / ARNI</strong></td>
+          <td>Ard yük↓, yeniden şekillenme↓, mortalite↓</td>
+          <td>HFrEF, HT, DM+KBH/proteinüri, MI sonrası</td>
+          <td><strong>Gebelik, hiperkalemi, bilateral renal arter stenozu!</strong> ACEi'de öksürük/ödem. Kreatinin &gt;%30↑ → stenoz düşün</td>
+        </tr>
+        <tr>
+          <td><strong>β-Bloker</strong></td>
+          <td>Hız↓, kontraktilite↓, O₂ talebi↓, diyastol↑</td>
+          <td>HFrEF, KAH/angina, MI sonrası, AF hız kontrolü, MS, HCM</td>
+          <td><strong>Akut astım, ileri AV blok, bradikardi!</strong> Akut AR ve kokain/feokromositomada tek başına kaçın</td>
+        </tr>
+        <tr>
+          <td><strong>MRA</strong> (Spironolakton/Eplerenon)</td>
+          <td>Aldosteron bloker; fibrozis ve mortalite↓</td>
+          <td>HFrEF, Dirençli HT (4. ilaç), Primer Aldosteronizm</td>
+          <td>Hiperkalemi, ağır böbrek yetmezliği</td>
+        </tr>
+        <tr>
+          <td><strong>SGLT2i</strong></td>
+          <td>Natriürez, kardiyorenal koruma</td>
+          <td><strong>HFrEF ve HFpEF (DM olmasa da!)</strong>, KBH, DM</td>
+          <td>Mortalite ve hastane yatışını azaltır</td>
+        </tr>
+        <tr>
+          <td><strong>Non-DHP KKB</strong> (Verapamil/Diltiazem)</td>
+          <td>AV iletimi yavaşlatır, hız↓</td>
+          <td>AF hız kontrolü, SVT, HT, HCM</td>
+          <td><strong>EF &lt;%40 (HFrEF), AV blok, bradikardi, WPW, VT'de YASAK!</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Tiyazid Diüretik</strong></td>
+          <td>Distal tübülde Na/su atılımı</td>
+          <td>HT (özellikle yaşlı/sistolik)</td>
+          <td><strong>Aktif gut!</strong> Yan etki: Glukoz↑, ürik asit↑, Ca↑</td>
+        </tr>
+        <tr>
+          <td><strong>Loop Diüretik</strong> (Furosemid)</td>
+          <td>Güçlü hacim ve konjesyon azaltımı</td>
+          <td>KY'de sıvı yükü (semptomatik)</td>
+          <td>Hipokalemi, dehidratasyon; AS'de SV'yi düşürebilir</td>
+        </tr>
+        <tr>
+          <td><strong>Nitratlar</strong></td>
+          <td>Venodilatasyon → ön yük↓, kollateral↑</td>
+          <td>Angina, akut pulmoner ödem</td>
+          <td>Sağ ventrikül MI, PDE5 inhibitörü kullanımı, ciddi AS</td>
+        </tr>
+        <tr>
+          <td><strong>Adenozin</strong></td>
+          <td>AV düğümü geçici durdurur</td>
+          <td>Düzenli dar QRS SVT (AVNRT/AVRT)</td>
+          <td>Geniş QRS / VT / WPW'de tehlikeli olabilir</td>
+        </tr>
+        <tr>
+          <td><strong>Amiodaron</strong></td>
+          <td>Geniş spektrumlu antiaritmik</td>
+          <td>Stabil VT, AF ritim kontrolü, WPW</td>
+          <td>Tiroit, akciğer, karaciğer toksisitesi</td>
+        </tr>
+        <tr>
+          <td><strong>Kolşisin</strong></td>
+          <td>Perikardiyal inflamasyonu ve nüksü önler</td>
+          <td>Akut perikardit + Rekürren perikardit (≥6 ay)</td>
+          <td>Tek başına değil NSAİİ/ASA ile kombine</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ============ MASTER PAGE 4: Semptomdan Tanıya ============ -->
+<div class="section">
+  <div class="section-header" style="background: linear-gradient(135deg, #1d3557 0%, #457b9d 100%);">
+    <div class="section-num">MASTER HARİTA · M4</div>
+    <h2>🔍 Semptom &amp; Bulgudan Tanıya Master Haritası</h2>
+    <div class="section-desc">Soru kökünde bu semptom veya fizik muayene bulgusu varsa aklına ilk ne gelmeli?</div>
+  </div>
+
+  <div class="diagram-container">
+    <h3>Semptom → Hastalık Eşleştirme Tablosu</h3>
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Semptom / Bulgu</th>
+          <th>Hangi Hastalıklarda Görülür?</th>
+          <th>Soruyu Çözdüren Kritik İpucu</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Ortopne / PND / Efor Dispnesi</strong></td>
+          <td>Sol KY (HFrEF/HFpEF), Mitral Darlığı, Kronik/Akut MR, AS, HCM</td>
+          <td>Yatınca venöz dönüş↑ → Sol atriyum ve pulmoner venöz basınç↑</td>
+        </tr>
+        <tr>
+          <td><strong>Periferik Ödem + JVD + Hepatomegali + Asit</strong></td>
+          <td>Sağ KY, Triküspit Yetersizliği, Konstriktif Perikardit, Tamponad, Pulmoner HT</td>
+          <td>İnspirasyonda JVP↑ → <strong>Kussmaul (Konstriksiyon)</strong>; İnspirasyonda üfürüm↑ → <strong>Rivero-Carvallo (TR)</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Eforla Senkop</strong></td>
+          <td><strong>Aort Darlığı (AS), HCM, Pulmoner HT</strong>, Aritmik nedenler</td>
+          <td>Yatar pozisyonda veya efor SIRASINDA senkop = <strong>Kardiyak!</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Ayakta / Sıcak / Kan Görünce Senkop</strong></td>
+          <td>Vazovagal (Refleks) Senkop</td>
+          <td>En sık senkop tipi; prodrom (bulantı, terleme) var</td>
+        </tr>
+        <tr>
+          <td><strong>Ateş + Yeni Üfürüm</strong></td>
+          <td><strong>Enfektif Endokardit</strong>, Akut Romatizmal Ateş, Miyokardit</td>
+          <td>Hemen AB öncesi 3 set kan kültürü + Eko!</td>
+        </tr>
+        <tr>
+          <td><strong>Hemoptizi</strong></td>
+          <td><strong>Mitral Darlığı</strong>, Pulmoner Emboli, Pulmoner HT</td>
+          <td>MS'de yüksek sol atriyal basınca bağlı bronşiyal ven rüptürü</td>
+        </tr>
+        <tr>
+          <td><strong>Ses Kısıklığı / Disfaji</strong></td>
+          <td><strong>Mitral Darlığı (Ortner sendromu)</strong>, Büyük Perikardiyal Efüzyon, Aort Anevrizması</td>
+          <td>Genişleyen LA rekürren laringeal sinire veya özofagusa basar</td>
+        </tr>
+        <tr>
+          <td><strong>Yatak / Pozisyonla Değişen Ağrı + Frotman</strong></td>
+          <td><strong>Akut Perikardit</strong>, RA / SLE / FMF seroziti</td>
+          <td>Öne eğilince azalır; EKG'de yaygın konkav ST↑</td>
+        </tr>
+        <tr>
+          <td><strong>Siyanoz + Çomak Parmak</strong></td>
+          <td><strong>Eisenmenger Sendromu</strong>, Fallot Tetralojisi, Ağır PH</td>
+          <td>Ayakta siyanoz + elde normal = <strong>PDA (Diferansiyel siyanoz)</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card-grid no-break">
+    <div class="info-card">
+      <h4>💓 Nabız &amp; Kalp Sesi İpuçları</h4>
+      <ul>
+        <li><strong>Parvus et tardus:</strong> Aort Darlığı (AS)</li>
+        <li><strong>Corrigan (sıçrayıcı) + Geniş nabız basıncı:</strong> Aort Yetersizliği (AR), PDA</li>
+        <li><strong>Pulsus paradoxus (&gt;10 mmHg↓):</strong> Kardiyak Tamponad</li>
+        <li><strong>Pulsus alternans:</strong> Ciddi LV disfonksiyonu (DCM/HFrEF)</li>
+        <li><strong>Kol-bacak KB farkı (&gt;20 mmHg):</strong> Aort Koarktasyonu</li>
+        <li><strong>Sabit çift S2:</strong> ASD</li>
+        <li><strong>Opening snap + diyastolik rulo:</strong> Mitral Darlığı</li>
+        <li><strong>Perikardiyal knock:</strong> Konstriktif Perikardit</li>
+      </ul>
+    </div>
+    <div class="info-card red">
+      <h4>🔎 Cilt, Göz &amp; Özel Bulgular</h4>
+      <ul>
+        <li><strong>Janeway (ağrısız avuç/taban):</strong> Endokardit (septik emboli)</li>
+        <li><strong>Osler (ağrılı parmak ucu):</strong> Endokardit (immün kompleks)</li>
+        <li><strong>Roth lekeleri (retina):</strong> Endokardit</li>
+        <li><strong>Kolda nabız alınamaması:</strong> Takayasu arteriti</li>
+        <li><strong>Ataklarla HT + Baş ağrısı + Terleme + Çarpıntı:</strong> Feokromositoma</li>
+        <li><strong>Santral obezite + Stria + Proksimal güçsüzlük:</strong> Cushing</li>
+        <li><strong>Gode bırakmayan ödem + Bradikardi:</strong> Hipotiroidi</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ============ GRAND FINALE: Exam Traps ============ -->
+<div class="section">
+  <div class="section-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+    <div class="section-num">FİNAL</div>
+    <h2>🎯 Sınav Tuzakları ve "EN"ler</h2>
+    <div class="section-desc">En çok sorulan kritik noktalar</div>
+  </div>
+
+  <div class="diagram-container">
+    <table class="compare-table">
+      <thead>
+        <tr><th>Konu</th><th>Kritik Ayrım</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>MetS</td><td>Tek başına obezite tanı koydurtmaz — 5'ten 3 gerek</td></tr>
+        <tr><td>AKS</td><td>İlk adım EKG, troponin tek başına MI nedeni göstermez</td></tr>
+        <tr><td>NSTEMI</td><td>Fibrinolitik kontrendike!</td></tr>
+        <tr><td>Tamponad vs Konstriksiyon</td><td>Tamponad: hipotansiyon + pulsus paradoxus; Konstriksiyon: Kussmaul + knock</td></tr>
+        <tr><td>HFrEF'te SGLT2i</td><td>Diyabet şartı YOK</td></tr>
+        <tr><td>Kronik MR</td><td>EF&lt;%60 aldatıcı! Normal gibi görünen EF geç</td></tr>
+        <tr><td>VT vs SVT</td><td>Geniş QRS = aksi kanıtlanana kadar VT</td></tr>
+        <tr><td>WPW</td><td>Digoksin + Verapamil YASAK</td></tr>
+        <tr><td>En sık senkop</td><td>Vazovagal (refleks)</td></tr>
+        <tr><td>En sık KKH</td><td>VSD</td></tr>
+        <tr><td>En sık PH grubu</td><td>Grup 2 (sol kalp)</td></tr>
+        <tr><td>Endokardit en sık etken</td><td>S. aureus</td></tr>
+        <tr><td>Endokardit en sık komplikasyon</td><td>KY</td></tr>
+        <tr><td>Dirençli HT</td><td>Diüretik dahil 3 ilaç veya 4 ilaçla kontrol</td></tr>
+        <tr><td>Renovasküler ipucu</td><td>ACEi/ARB sonrası kreatinin &gt;%30 ↑</td></tr>
+        <tr><td>Eisenmenger</td><td>Defekt kapama KONTRENDİKE</td></tr>
+        <tr><td>Gebelik</td><td>ACEi/ARB KONTRENDİKE → Metildopa/Labetalol</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'base',
+    themeVariables: {
+      fontFamily: 'Inter, sans-serif',
+      fontSize: '13px',
+      primaryColor: '#e0f0f5',
+      primaryTextColor: '#1a1a2e',
+      primaryBorderColor: '#0f4c5c',
+      lineColor: '#5a7a84',
+      secondaryColor: '#fff3cd',
+      tertiaryColor: '#fce4ec'
+    },
+    flowchart: {
+      curve: 'basis',
+      padding: 15,
+      nodeSpacing: 30,
+      rankSpacing: 40,
+      htmlLabels: true,
+      useMaxWidth: true
+    }
+  });
+</script>
+</body>
+</html>
